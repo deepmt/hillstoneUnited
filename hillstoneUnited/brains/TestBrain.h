@@ -11,7 +11,7 @@ public:
 	virtual ~TestBrain();
 	void getBrainList(World& w,std::deque<BrainBase>& brainList);
 	void getActionList(World& w);
-	Action getAction();
+	Action getAction(World& w);
 private:
 	FallDownResponce fdr;
 };

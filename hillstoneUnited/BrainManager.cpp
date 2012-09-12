@@ -27,7 +27,7 @@ Action BrainManager::getAct(World& w){
 		nowBrain = brainList.front();
 	}
 	std::cout << "nowBrain is " << nowBrain.brainName << std::endl;
-	return nowBrain.getAction();
+	return nowBrain.getAction(w);
 }
 
 void BrainManager::updateBrainList(World& w,std::deque<BrainBase>& brainList){

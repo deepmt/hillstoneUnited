@@ -20,11 +20,16 @@ void BrainBase::setClear(bool flag){
 	isClearFlag = flag;
 }
 
-Action BrainBase::getAction(){
+Action BrainBase::getAction(World& w){
+	getActionList(w);
 	if(actionList.size() <= 0){
-		std::cout << "[error]actionList is empty!! return DUMMY" << std::endl;
-		return Action(DUMMY,1);
+		std::cout << "all action is done!! return DUMMY" << std::endl;
+		setClear(true);
+		Action tempAction = Action(DUMMY,1);
+		return tempAction;
 	}
+
+
 	Action nowAction = actionList.front();
 	if(nowAction.count <= 0){
 		actionList.pop_front();

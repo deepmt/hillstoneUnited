@@ -25,8 +25,8 @@ bool FallDownResponce::check(World& w){
 	//check whether agent is fallen down
 	const int limen = 10;
 	double ACC_Sum[2];
-	ACC_Sum[0] = w.getACC_Sum(0);
-	ACC_Sum[1] = w.getACC_Sum(1);
+	ACC_Sum[0] = w.getACC_Sum(0,limen);
+	ACC_Sum[1] = w.getACC_Sum(1,limen);
 
   if((fabs(ACC_Sum[1]) > 9.0 * limen) && (fabs(ACC_Sum[1]) < 15 * limen)){
     return true; //utsubuse or aomuki

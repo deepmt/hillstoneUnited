@@ -22,7 +22,7 @@ public:
 	virtual ~BrainBase();
 	virtual void getBrainList(World& w, std::deque<BrainBase>& brainList); //get brainList
 	virtual void getActionList(World& w);
-	virtual Action getAction();
+	virtual Action getAction(World& w);
 	void setClear(bool cflag);
 	bool isClear();
 	string brainName;

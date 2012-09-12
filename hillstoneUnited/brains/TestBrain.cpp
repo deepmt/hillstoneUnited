@@ -24,7 +24,7 @@ void TestBrain::getBrainList(World& w, std::deque<BrainBase>& brainList){
 	brainList.push_back(*this);
 }
 
-Action TestBrain::getAction(){
+Action TestBrain::getAction(World& w){
 	if(actionList.size() <= 0){
 		std::cout << "[error]actionList is empty!! return DUMMY" << std::endl;
 		return Action(DUMMY,1);
