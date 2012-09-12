@@ -17,11 +17,24 @@ FallDownResponce::~FallDownResponce() {
 }
 
 Action FallDownResponce::responce(World& w){
-	Action act;
-	return act;
+	Action sp = Action(STANDUP,100);
+	return sp;
 }
 
 bool FallDownResponce::check(World& w){
-	//TODO write process to check falldown of agent
-	return true;
+	//check whether agent is fallen down
+	const int limen = 10;
+	double ACC_Sum[2];
+	ACC_Sum[0] = w.getACC_Sum(0);
+	ACC_Sum[1] = w.getACC_Sum(1);
+
+  if((fabs(ACC_Sum[1]) > 9.0 * limen) && (fabs(ACC_Sum[1]) < 15 * limen)){
+    return true; //utsubuse or aomuki
+  }
+
+  if((fabs(ACC_Sum[0]) > 9.0 * limen) && (fabs(ACC_Sum[0]) < 15 * limen)){
+    return true; //yokomuki
+  }
+
+  return false;
 }
