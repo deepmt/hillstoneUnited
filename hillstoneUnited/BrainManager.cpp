@@ -6,10 +6,8 @@
  */
 
 #include "BrainManager.h"
-#include "brains/naganoBrain.h"
 
 BrainManager::BrainManager() {
-	fdr = FallDownResponce();
 }
 
 BrainManager::~BrainManager() {
@@ -17,22 +15,23 @@ BrainManager::~BrainManager() {
 }
 
 Action BrainManager::getAct(World& w){
-	//if there are sudden situation (ex falldown)
-	if( checkResponce() ){
-		//TODO write qbk action
+	if(brainList.size() <= 0){
+		updateBrainList(w,brainList);
 	}
-	else{
-		updateBrainList(w,BrainList);
+	BrainBase nowBrain = brainList.front();
+	if(nowBrain.isClear()){
+		brainList.pop_front();
+		if(brainList.size() <= 0){
+			updateBrainList(w,brainList);
+		}
+		nowBrain = brainList.front();
 	}
-	return Action();
+	std::cout << "nowBrain is " << nowBrain.brainName << std::endl;
+	return nowBrain.getAction();
 }
 
 void BrainManager::updateBrainList(World& w,std::deque<BrainBase>& brainList){
 	//TODO write conditional branch for player position
-	BrainBase b = TestBrain();
+	TestBrain b = TestBrain();
 	b.getBrainList(w,brainList);
-}
-
-bool BrainManager::checkResponce(){
-	return fdr.check();
 }

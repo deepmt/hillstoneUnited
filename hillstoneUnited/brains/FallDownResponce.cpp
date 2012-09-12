@@ -21,7 +21,7 @@ Action FallDownResponce::responce(World& w){
 	return act;
 }
 
-bool FallDownResponce::check(){
+bool FallDownResponce::check(World& w){
 	//TODO write process to check falldown of agent
 	return true;
 }

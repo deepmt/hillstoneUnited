@@ -8,6 +8,9 @@
 #ifndef BRAINBASE_H_
 #define BRAINBASE_H_
 
+#include <string>
+#include <iostream>
+
 #include "../action.h"
 #include "../world.cpp"
 #include "../util.h"
@@ -19,11 +22,12 @@ public:
 	virtual ~BrainBase();
 	virtual void getBrainList(World& w, std::deque<BrainBase>& brainList); //get brainList
 	virtual void getActionList(World& w);
-	Action getAction();
+	virtual Action getAction();
 	void setClear(bool cflag);
 	bool isClear();
+	string brainName;
 private:
-	std::deque<Action> ActionList;
+	std::deque<Action> actionList;
 	bool isClearFlag;
 };
 

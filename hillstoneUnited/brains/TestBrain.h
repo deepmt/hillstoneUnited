@@ -3,6 +3,7 @@
 #define TESTBRAIN_H_
 
 #include "BrainBase.h"
+#include "FallDownResponce.h"
 
 class TestBrain : public BrainBase{
 public:
@@ -10,6 +11,10 @@ public:
 	virtual ~TestBrain();
 	void getBrainList(World& w,std::deque<BrainBase>& brainList);
 	void getActionList(World& w);
+private:
+	FallDownResponce fdr;
 };
+
+
 
 #endif /* TESTBRAIN_H_ */
