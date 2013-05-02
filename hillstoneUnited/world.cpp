@@ -50,7 +50,6 @@ World::Perception::Perception(const std::string& msg, World& world){
   getPlayer(msg, "enemy", world);
   parseSide(msg, world);
   parseUnum(msg, world);
-  calcuratePerception(world);
 
 }
 
@@ -68,6 +67,7 @@ void World::update(const std::string& msg){
 
 
   deqPerception.push_back(perc);
+  perc->calcuratePerception(*this);
   while(deqPerception.size()>DEQUE_SIZE){
     if(deqPerception.empty()) break;
     //    std::cout << "deqPerception: too much data!" << std::endl;
@@ -186,6 +186,17 @@ void World::dump(){
   // 	    << getENEMY(1,0) << ", "
   // 	    << getENEMY(1,1) << ", "
   // 	    << getENEMY(1,2) << std::endl;
+
+  // std::cout << "XY :"
+  // 	    << getXY(0) << ", "
+  // 	    << getXY(1) << std::endl;
+  // std::cout << "BXY :"
+  // 	    << getBXY(0) << ", "
+  // 	    << getBXY(1) << std::endl;
+  // std::cout << "ABSANGLE :"
+  // 	    << getABSANGLE() << std::endl;
+  // std::cout << "BANGLE :"
+  // 	    << getBANGLE() << std::endl;
 
   // std::cout << "ACC_Sum :"
   // 	    << getACC_Sum(0, 10) << ", "
@@ -765,7 +776,6 @@ void World::Perception::calcuratePerception(World& world){
   double cos_temp    = 0;
 
 
-
   if(confMGL(world) == 0 && confMGR(world) == 0){
 
     double mgl[3];
@@ -898,7 +908,7 @@ void World::Perception::calcuratePerception(World& world){
       double *ball = BAL;
       bangle = absangle + ball[1];
       bxy[0] = xy[0] + ball[0] * cos(bangle*M_PI/180);
-      bxy[1] = xy[1] + ball[1] * cos(bangle*M_PI/180);
+      bxy[1] = xy[1] + ball[0] * sin(bangle*M_PI/180);
     }
   }else if(confEGL(world) == 0 && confEFL(world) == 0){
 
@@ -933,7 +943,7 @@ void World::Perception::calcuratePerception(World& world){
       double *ball = BAL;
       bangle = absangle + ball[1];
       bxy[0] = xy[0] + ball[0] * cos(bangle*M_PI/180);
-      bxy[1] = xy[1] + ball[1] * sin(bangle*M_PI/180);
+      bxy[1] = xy[1] + ball[0] * sin(bangle*M_PI/180);
     }
   }else if(confEGR(world) == 0 && confEFR(world) == 0){
 
@@ -966,7 +976,7 @@ void World::Perception::calcuratePerception(World& world){
       double *ball = BAL;
       bangle = absangle + ball[1];
       bxy[0] = xy[0] + ball[0] * cos(bangle*M_PI/180);
-      bxy[1] = xy[1] + ball[1] * sin(bangle*M_PI/180);
+      bxy[1] = xy[1] + ball[0] * sin(bangle*M_PI/180);
     }
   }
 
@@ -1999,4 +2009,21 @@ double World::getFieldLengthX() const{
 
 double World::getFieldLengthY() const{
   return field_length_y;
+}
+
+bool World::isFalling() {
+  const int TH = 10;
+  double ACC_Sum[2];
+  ACC_Sum[0] = getACC_Sum(0, TH);
+  ACC_Sum[1] = getACC_Sum(1, TH);
+
+  if((fabs(ACC_Sum[1]) > 9.0 * TH) && (fabs(ACC_Sum[1]) < 15.0 *TH)){
+    // std::cout << "utsubuse or aomuke!" << std::endl;
+    return true;
+  }
+  if((fabs(ACC_Sum[0]) > 9.0 * TH) && (fabs(ACC_Sum[0]) < 15.0 *TH)){
+    std::cout << "yokomuki!" << std::endl;
+    return true;
+  }
+  return false;
 }

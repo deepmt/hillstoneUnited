@@ -4,7 +4,8 @@
 #include <iostream>
 #include "world.hpp"
 #include "elementbase.hpp"
-#include "brain/runtoball.hpp"
+#include "brain/brainbase.hpp"
+#include "brain/attack.hpp"
 
 /*
   This class is interface to main function.
@@ -28,7 +29,7 @@ class Robot{
 
  protected:
   World world;
-  RunToBall* samplebrain;
+  BrainBase* mainbrain;
   bool virgin;
 
 };

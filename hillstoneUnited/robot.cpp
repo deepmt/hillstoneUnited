@@ -24,20 +24,23 @@ std::string Robot::getNextAngle(std::string &msg){
   **/
   //return "hogehoge in robot"; // I'll change it
 
+  double initpos[2] = {0.0, 0.0};
+
   if (virgin)
   {
-    samplebrain = new RunToBall(world);
+    mainbrain = new Attack(world, initpos);
     virgin = false;
   }else{
 
-    if (samplebrain->isFinished(world))
+    if (mainbrain->isFinished())
     {
-      delete samplebrain;
-      samplebrain = new RunToBall(world);
+      delete mainbrain;
+      mainbrain = new Attack(world, initpos);
+      std::cout << "finish!!" << std::endl;
     }
 
   }
-  return samplebrain->getNextAngle(world);
+  return mainbrain->getNextAngle(world);
 
 
 }
