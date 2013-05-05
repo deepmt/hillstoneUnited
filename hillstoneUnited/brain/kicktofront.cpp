@@ -29,7 +29,7 @@ void KickToFront::judgement(World& w){
 				//elementList.push_back(new SequenceMovement("READY"));
 				elementList.push_back(new SequenceMovement("LAROUND"));
 				not_seeBALLcount +=1;
-				if(not_seeBALLcount>3){
+				if(not_seeBALLcount>8){
 					elementList.push_back(new TicktackBase("TRIGHT",4));
 				}
 				return;
@@ -42,7 +42,7 @@ void KickToFront::judgement(World& w){
 				double ballangle = w.getBAL(1);
 				//count:angle = 6:90
 				int count = int(8*fabs(ballangle)/90);
-				int dcount = int(w.getBAL(0)*4);
+				int dcount = int(w.getBAL(0)*5);
 				int dcount_limit = 30;
 				if(w.getBAL(0)<3){
 					dcount_limit = 7;
