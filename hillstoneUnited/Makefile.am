@@ -26,7 +26,8 @@ brain = brain/brainbase.hpp brain/brainbase.cpp \
 		brain/kickto.hpp brain/kickto.cpp \
 		brain/kicktofront.hpp brain/kicktofront.cpp \
 		brain/keeper.hpp brain/keeper.cpp \
-		brain/testbrain.hpp brain/testbrain.cpp
+		brain/testbrain.hpp brain/testbrain.cpp \
+		brain/kick.hpp brain/kick.cpp
 
 movement = movement/movementbase.hpp movement/movementbase.cpp \
 					 movement/ticktackbase.hpp movement/ticktackbase.cpp \

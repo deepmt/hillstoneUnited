@@ -15,6 +15,7 @@
 #include "runtoball.hpp"
 #include "adjusttoball.hpp"
 #include "kickto.hpp"
+#include "kick.hpp"
 #include "kicktofront.hpp"
 #include "runto.hpp"
 #include "runtoenemy.hpp"
