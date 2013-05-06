@@ -64,7 +64,7 @@ void Attack::judgement(World& w) {
     passTo = 0;
 
     judgeStandup(w);
-    elementList.push_back(new Kick(w,0));
+    elementList.push_back(new OdenKick(w,0));
     return;
 
     // std::cout << egr[0] << std::endl;
